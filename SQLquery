@@ -1,0 +1,5 @@
+updown querys
+
+create database updown;
+
+create table usuarios(usuario varchar(20) NOT NULL, contrasena varchar(20) NOT NULL, constraint primary key(usuario));
