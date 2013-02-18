@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+p {
+	position:relative;
+	background-color: white;
+	font-family: "Arial";
+	font-style: italic;
+	font-weight: bold;
+	color: green;
+	text-align: center;
+}
+table {
+	background-color: white;
+	text-align: center;
+}
+input {
+	text-shadow: blue;
+	font-family: fantasy;
+	color: green;
+	color: buttonshadow;
+}
+th {
+	color: green;
+}
+h1 {
+	font-family:cursive;
+	font-style:italic;
+	color: black;
+	background-color: white;
+}
+body {
+	background-position:center;
+	background-image: url("Zelda-link-moon-1680x1050.jpg");
+}
+a {
+	color: green;
+	background-color: white;
+	
+}
