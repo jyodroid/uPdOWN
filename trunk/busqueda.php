@@ -7,49 +7,21 @@
 		<center>
 		<img alt="uPdOWN" src="titulo.png" align="top"/>
 		<?php
-		session_start();
-		$inactive = 600;
-		$session_life =  time() - $_SESSION['timeout'];
-		$_SESSION['timeout']=time();
 			if (strcmp($_GET['busqueda'], 'todo')===0){
 				$query = "select * from imagenes";
 			}
 			if (strcmp($_GET['busqueda'], 'mias')===0){
-				try {
-					if((strlen($_SESSION['usuario'])===0)||$_SESSION['usuario']===null){
-						throw new Exception("No ha ingresado al sistema", 2);
-					}
-					if($session_life > $inactive){
-						if(isset($_SESSION['usuario']))
-								unset($_SESSION['usuario']);
-						throw new Exception("Mas de 10 minutos inactivo, por favor ingrese de nuevo", 4);
-					}
-					$query = "select * from imagenes where usuario = '".$_SESSION['usuario']."'";
-				}catch (Exception $e){
-					$_SESSION['error']=$e->getMessage();
-					$_SESSION['errorn']=$e->getCode();
-					header('location: errores.php');
-				}
+				$_SESSION['timeout']=time();
+				include 'verificacion.php';
+				$query = "select * from imagenes where usuario = '".$_SESSION['usuario']."'";
 			}
 			if (($_POST['descripcion']!=null)||(strlen($_POST['descripcion'])!=0)){
-				try {
-					if((strlen($_SESSION['usuario'])===0)||$_SESSION['usuario']===null){
-						throw new Exception("No ha ingresado al sistema", 2);
-					}
-					if($session_life > $inactive){
-						if(isset($_SESSION['usuario']))
-								unset($_SESSION['usuario']);
-						throw new Exception("Mas de 10 minutos inactivo, por favor ingrese de nuevo", 4);
-					}
-					if (strcmp($_POST['smios'], 'on')===0) {
-						$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' and usuario = '".$_SESSION['usuario']."'";
-					}else{
-						$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%'";
-					}
-				}catch (Exception $e){
-					$_SESSION['error']=$e->getMessage();
-					$_SESSION['errorn']=$e->getCode();
-					header('location: errores.php');
+				$_SESSION['timeout']=time();
+				include 'verificacion.php';
+				if (strcmp($_POST['smios'], 'on')===0) {
+					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' and usuario = '".$_SESSION['usuario']."'";
+				}else{
+					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%'";
 				}
 			}
 		?>

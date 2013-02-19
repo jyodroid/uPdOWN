@@ -1,5 +1,6 @@
 <?php 
-	include 'verificacioninicial.php';
+	$_SESSION['timeout']=time();
+	include 'verificacion.php';
 ?>
 <html>
 <head>

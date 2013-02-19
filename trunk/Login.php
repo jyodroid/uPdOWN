@@ -7,7 +7,7 @@
 	<center>
 	<img alt="uPdOWN" src="titulo.png" align="top">
 	<h1>Ingreso de usuario</h1>
-		<form action="subirFotos.php" method="post">
+		<form action="verificacioninicial.php" method="post">
 				<table border="0">
 					<tr>	
 						<th>Usuario</th><td><input type ="text" name="usuario"/></td>
