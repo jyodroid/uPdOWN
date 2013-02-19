@@ -34,5 +34,10 @@ body {
 a {
 	color: green;
 	background-color: white;
-	
+}
+h2 {
+	background-color: white;
+	border-style: ridge;
+	border-color: green;
+	border-width: medium;
 }
