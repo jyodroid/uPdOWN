@@ -7,19 +7,16 @@
 	<center>
 	<img alt="uPdOWN" src="titulo.png" align="top">
 	<h1>Nuevo usuario</h1>
-		<form action="subirFotos.php" method="post">
+		<form action="registrado.php" method="post">
 				<table border="0">
-					<tr>	
-						<th>Nombre</th><td><input type ="text" name="nombre"/></td>
-					</tr>
 					<tr>
 						<th>usuario</th><td><input type="text" name="usuario"/> 
 					</tr>
 					<tr>
-						<th>contraseña</th><td><input type="password" name="contraseña"/> 
+						<th>contraseña</th><td><input type="password" name="contrasena"/> 
 					</tr>
 					<tr>
-						<th>Repita Contraseña</th><td><input type="password" name="recontraseña"/> 
+						<th>Repita Contraseña</th><td><input type="password" name="recontrasena"/> 
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input type="submit" value="Registrar"/></td> 

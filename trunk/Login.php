@@ -1,8 +1,3 @@
-<?php
-	session_start();
-	$_SESSION['usuario']= null;
-	$_SESSION['timeout']=time();
-?>
 <html>
 <head>
 	<link rel="stylesheet" style="text/css" media="screen" href="Estilo.css">
@@ -26,7 +21,7 @@
 				</table>
 		</form>
 		<a href="nuevousuario.php">Nuevo usuario</a><br>
-		<a href="busqueda.php?todo">Ver todas las fotografías de uPdOWN</a>
+		<a href="busqueda.php?busqueda=todo">Ver todas las fotografías de uPdOWN</a>
 	</center>
 </body>
 </html>

@@ -29,6 +29,8 @@ h1 {
 }
 body {
 	background-position:center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 	background-image: url("Zelda-link-moon-1680x1050.jpg");
 }
 a {
