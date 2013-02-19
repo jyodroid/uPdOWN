@@ -8,20 +8,20 @@
 		<img alt="uPdOWN" src="titulo.png" align="top"/>
 		<?php
 			if (strcmp($_GET['busqueda'], 'todo')===0){
-				$query = "select * from imagenes";
+				$query = "select * from imagenes order by nombre";
 			}
 			if (strcmp($_GET['busqueda'], 'mias')===0){
 				$_SESSION['timeout']=time();
 				include 'verificacion.php';
-				$query = "select * from imagenes where usuario = '".$_SESSION['usuario']."'";
+				$query = "select * from imagenes where usuario = '".$_SESSION['usuario']."' order by nombre";
 			}
 			if (($_POST['descripcion']!=null)||(strlen($_POST['descripcion'])!=0)){
 				$_SESSION['timeout']=time();
 				include 'verificacion.php';
 				if (strcmp($_POST['smios'], 'on')===0) {
-					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' and usuario = '".$_SESSION['usuario']."'";
+					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' and usuario = '".$_SESSION['usuario']."' order by nombre";
 				}else{
-					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%'";
+					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' order by nombre";
 				}
 			}
 		?>

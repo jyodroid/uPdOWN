@@ -25,7 +25,7 @@
 				<th>Describe la foto: </th><td> <textarea rows="2" cols="30" name="descripcion" requiered = "required"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Subir Foto"/></td>
+				<td colspan="2"><input type="submit" value="Subir Foto""/><input type="reset" value="Borrar"/></td>
 			</tr>
 		</table>
 	</form>
