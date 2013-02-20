@@ -17,13 +17,13 @@
 				$tipo = $_FILES['foto']['type'];
 				$image = substr($tipo, 0, 5);
 				if (strcmp($image, 'image')!=0){
-					throw new Exception("No es una fotografía!", 10);
+					throw new Exception("No es una fotografía!", 8);
 				}
 				$nombre = $_SESSION['usuario'].'_'.$_FILES['foto']['name'];
 				
 				//Para evitar problemas en la base de datos se hace el nombre del archivo menor que 20
 				while (strlen($nombre)>=20){
-					$tmp = substr($nombre, 0, strlen($nombre)/2);
+					$tmp = substr($nombre, 0, strlen($nombre)-6);
 					$nombre = $tmp.substr($nombre, strlen($nombre)-5, strlen($nombre));//Se le agrega la extensión
 				}
 				
@@ -36,7 +36,7 @@
 					$en = mysqli_errno($conection);
 					$et = mysqli_error($conection);
 					mysqli_close($conection);
-					throw new Exception("Error de query 1, ".$en." :".$et, 9);
+					throw new Exception("Error de query: fotoAgregada:39, ".$en." :".$et, 1);
 				}
 				mysqli_use_result($conection);
 				$dato = mysqli_fetch_array($resultado);
@@ -60,7 +60,7 @@
 				$dato = mysqli_fetch_array($resultado);
 				foreach ($dato as $valor) {
 					if (($valor+$_FILES['foto']['size'])>=50000000000){
-						throw new Exception("Almacenamiento al máximo, no puede agregar el archivo", 11);
+						throw new Exception("Almacenamiento al máximo, no puede agregar el archivo", 9);
 					}
 				}
 				mysqli_free_result($resultado);
@@ -71,7 +71,7 @@
 					$en = mysqli_errno($conection);
 					$et = mysqli_error($conection);
 					mysql_close($conection);
-					throw new Exception("Error de query 2, ".$en." :".$et, 9);
+					throw new Exception("Error de query: fotoAgregada:74, ".$en." :".$et, 1);
 				}
 				mysqli_close($conection);
 				
@@ -82,10 +82,10 @@
 					if(move_uploaded_file($_FILES['foto']['tmp_name'],$destino)){
 						echo '<h1>Foto Agregada</h1><br><a href="javascript:history.go(-1);">Volver</a>';
 					} else {
-						throw new Exception("Error al subir el archivo 1", 11);
+						throw new Exception("Error al subir el archivo", 10);
 					}
 				} else {
-					throw new Exception("Error al subir el archivo 2", 11);
+					throw new Exception("Error al subir el archivo", 10);
 				}
 				
 		}catch (Exception $e){
