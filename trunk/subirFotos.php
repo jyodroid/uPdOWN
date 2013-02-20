@@ -22,7 +22,7 @@
 				<td colspan="2"><input type="file" name="foto" value="seleccione fotografía" requiered = "required"/></td>
 			</tr>
 			<tr>
-				<th>Describe la foto: </th><td> <textarea maxlength="50" rows="2" cols="30" name="descripcion" requiered = "required"></textarea></td>
+				<th>Describe la foto: </th><td> <textarea maxlength="200" rows="2" cols="30" name="descripcion" requiered = "required"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Subir Foto""/><input type="reset" value="Borrar"/></td>
