@@ -56,7 +56,7 @@
 				'<tr style="text-align: center;">
 				<td><img alt="No disponible" src="/eclipse/fotos/'.$dato['nombre'].'" height="30%"><br>
 				<a href = "descargar.php?id='.$dato['nombre'].'">Descargar '.$dato['nombre'].'</a></td>
-				<td width =  "200">'.$dato['descripcion'].'</td>
+				<td width = "200">'.$dato['descripcion'].'</td>
 				<td>'.($dato['tamano']/1000).'Kb </td>
 				<td>'.$dato['usuario'].'</td></tr>';
 			}
