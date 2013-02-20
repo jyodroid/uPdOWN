@@ -6,5 +6,5 @@ GRANT SELECT, INSERT ON updown.* to 'updown'@'localhost' IDENTIFIED BY 'gnomo';
 
 create table usuarios(usuario varchar(20) NOT NULL, contrasena varchar(20) NOT NULL, constraint primary key(usuario));
 
-create table imagenes (nombre varchar(20) NOT NULL, descripcion  varchar(50) NOT NULL, tamano INTEGER NOT NULL, usuario varchar(20),constraint primary key(nombre));
+create table imagenes (nombre varchar(20) NOT NULL, descripcion  varchar(200) NOT NULL, tamano INTEGER NOT NULL, usuario varchar(20),constraint primary key(nombre));
 
