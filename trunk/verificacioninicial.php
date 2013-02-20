@@ -11,13 +11,13 @@ try {
 			$en = mysqli_errno($conection);
 			$et = mysqli_error($conection);
 			mysqli_close($conection);
-			throw new Exception("Error de query 1, ".$en." :".$et, 9);
+			throw new Exception("Error de query: verfificacioninicial:14, ".$en." :".$et, 1);
 		}
 		mysqli_use_result($conection);
 		$dato = mysqli_fetch_array($resultado);
 		foreach ($dato as $valor) {
 			if ($valor!=1){
-				throw new Exception("Usuario y contraseña inválidos", 5) ;
+				throw new Exception("Usuario y contraseña inválidos", 2) ;
 			}
 		}
 		$_SESSION['usuario'] = $_REQUEST['usuario'];
@@ -25,7 +25,7 @@ try {
 		mysqli_close($conection);
 		header('location: subirFotos.php');
 	}else{
-		throw new Exception("Usuario y contraseña inválidos", 5) ;
+		throw new Exception("Credenciales no ingresadas", 3) ;
 	}
 }catch (Exception $e){
 	$_SESSION['error']=$e->getMessage();

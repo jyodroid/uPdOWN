@@ -23,7 +23,8 @@
 				
 				//Para evitar problemas en la base de datos se hace el nombre del archivo menor que 20
 				while (strlen($nombre)>=20){
-					$nombre = substr($nombre, 0, strlen($nombre)/2);
+					$tmp = substr($nombre, 0, strlen($nombre)/2);
+					$nombre = $tmp.substr($nombre, strlen($nombre)-5, strlen($nombre));//Se le agrega la extensión
 				}
 				
 				//Se busca que el nombre de la imagen no se repita
@@ -41,7 +42,7 @@
 				$dato = mysqli_fetch_array($resultado);
 				foreach ($dato as $valor) {
 					if ($valor!=0){
-						$nombre = substr(md5(uniqid(rand())),0,6).substr($nombre, 0, strlen($nombre)/2);
+						$nombre = substr(md5(uniqid(rand())),0,6).substr($nombre, strlen($nombre)-5, strlen($nombre));
 					}
 				}
 				mysqli_free_result($resultado);

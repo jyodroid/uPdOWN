@@ -1,9 +1,3 @@
-<?php 
-session_start();
-$inactive = 600;
-$session_life =  time() - $_SESSION['timeout'];
-$_SESSION['timeout']=time();
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,46 +5,59 @@ $_SESSION['timeout']=time();
 <title>Error</title>
 	<link rel="stylesheet" style="text/css" media="screen" href="Estilo.css">
 </head>
-<body class="diybackground">
-	<center><img alt="uPdOWN" src="titulo.png" align="top"></center>
-	<?php
-	switch ($_SESSION['errorn']) {
-		case 1:
-		case 9:
-			echo
-			'<h1 align="center" >'.$_SESSION['error'].'</h1>
-		<br><h2 align="center">por favor informe al administrador del sistema<h2>';
-			session_destroy();
-			break;
-		case 2:
-			echo
-			'<h1 align="center">'.$_SESSION['error'].'</h1>';
-			echo
-			'<center><a href="Login.php">Ingresar</a></center>';
-			break;
-		case 4:
-			echo
-			'<h1 align="center" style="color: red; background: white;">'.$_SESSION['error'].'</h1>';
-			echo
-			'<center><a href="Login.php">Ingresar de nuevo</a></center>';
-			session_destroy();
-			break;
-		case 15:
-			echo
-			'<h1 align="center" style="color: red; background: white;">'.$_SESSION['error'].'</h1>
-				<h3 align="center" style="color: blue; vertical-align: bottom;">
-				<a href="javascript:history.go(-1);">Volver</a>
-				</h3>';
-			break;
-
-		default:
-			echo
-			'<h1 align="center" style="color: red; background: white;">'.$_SESSION['error'].'</h1>
+	<body class="diybackground">
+		<center><img alt="uPdOWN" src="titulo.png" align="top"></center>
+		<?php
+		session_start();
+		if(isset($_SESSION['error'])===false){
+			die ('<h1 align = "center">Página no disponible</h1>');
+		}
+		$mensaje = $_SESSION['error'];
+		$nerror = $_SESSION['errorn'];
+		if(isset($_SESSION['error']))
+			unset($_SESSION['error']);
+		if(isset($_SESSION['errorn']))
+			unset($_SESSION['errorn']);
+		switch ($nerror) {
+			//Errores relacionados con el funcionamiento de las página
+			case 1:
+			case 4:
+				echo
+				'<h1 align="center" >'.$mensaje.'</h1><br>
+				<h2 align="center">por favor informe al administrador del sistema<h2><br>
+				<center><a href="cerrar.php">cerrar</a></center>';
+				break;
+			//Errores relacionados a la no autenticación
+			case 2:
+			case 3:
+			case 6:
+				echo
+				'<h1 align="center" style="color: red; background: white;">'.$mensaje.'</h1>
+						<center><a href="Login.php">Ingresar</a></center>';
+				break;
+			//Error relacionado al tiemout de la sesión
+			case 5:
+				echo
+				'<h1 align="center" style="color: red; background: white;">'.$mensaje.'</h1>
+							<center><a href="Login.php">Ingresar de nuevo</a></center>';
+				break;
+			//Errores que puden permitir regresar a la página anterior
+			case 7:
+				echo
+				'<h1 align="center" style="color: red; background: white;">'.$mensaje.'</h1>
 					<h3 align="center" style="color: blue; vertical-align: bottom;">
 					<a href="javascript:history.go(-1);">Volver</a>
 					</h3>';
-			break;
-	}
-	?>
-</body>
+				break;
+	
+			default:
+				echo
+				'<h1 align="center" style="color: red; background: white;">'.$mensaje.'</h1>
+						<h3 align="center" style="color: blue; vertical-align: bottom;">
+						<a href="javascript:history.go(-1);">Volver</a>
+						</h3>';
+				break;
+		}
+		?>
+	</body>
 </html>
