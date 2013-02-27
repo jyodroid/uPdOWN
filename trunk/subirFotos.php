@@ -4,6 +4,7 @@
 ?>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" title="text/css" media="screen" href="Estilo.css">
 	<title>uPdOWN--Subir Fotos</title>
 </head>
