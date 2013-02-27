@@ -8,31 +8,31 @@
 		<img alt="uPdOWN" src="titulo.png" align="top"/>
 		<?php
 			if (strcmp($_GET['busqueda'], 'todo')===0){
-				$query = "select * from imagenes order by nombre";
+				$_SESSION['myRequest']=4;
 			}
 			if (strcmp($_GET['busqueda'], 'mias')===0){
 				include 'verificacion.php';
 				$_SESSION['timeout']=time();
-				$query = "select * from imagenes where usuario = '".$_SESSION['usuario']."' order by nombre";
+				$_SESSION['myRequest']=5;
 			}
 			if (($_POST['descripcion']!=null)||(strlen($_POST['descripcion'])!=0)){
 				include 'verificacion.php';
 				$_SESSION['timeout']=time();
 				if (strcmp($_POST['smios'], 'on')===0) {
-					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' and usuario = '".$_SESSION['usuario']."' order by nombre";
+					$_SESSION['myRequest']=6;
 				}else{
-					$query = "select * from imagenes where descripcion like '%".$_POST['descripcion']."%' order by nombre";
+					$_SESSION['myRequest']=7;
 				}
 			}
 			try {
 				include 'conection.php';
-				mysqli_select_db($conection, 'updown');
-				$resultado = mysqli_query($conection, $query);
+				include 'consultas.php';
+				$resultado = mysqli_query($conection, $_SESSION['query']);
 				if($resultado==false){
 					$en = mysqli_errno($conection);
 					$et = mysqli_error($conection);
 					mysqli_close($conection);
-					throw new Exception("Error de query: busqueda:35 , ".$en." :".$et, 1);
+					throw new Exception("Error de query 1: busqueda , ".$en." :".$et, 1);
 				}
 				if(mysqli_num_rows($resultado)===0){
 					throw new Exception("No se obtuvieron resultados relacionados", 7);

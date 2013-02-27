@@ -29,14 +29,14 @@
 				
 				//Se busca que el nombre de la imagen no se repita
 				include 'conection.php';
-				mysqli_select_db($conection, 'updown');
-				$query = "select count(*) from imagenes where nombre ='".$nombre."'";
-				$resultado = mysqli_query($conection, $query);
+				$_SESSION['myRequest'] = 1;
+				include 'consultas.php';
+				$resultado = mysqli_query($conection, $_SESSION['query']);
 				if($resultado==false){
 					$en = mysqli_errno($conection);
 					$et = mysqli_error($conection);
 					mysqli_close($conection);
-					throw new Exception("Error de query: fotoAgregada:39, ".$en." :".$et, 1);
+					throw new Exception("Error de query 1: fotoAgregada, ".$en." :".$et, 1);
 				}
 				mysqli_use_result($conection);
 				$dato = mysqli_fetch_array($resultado);
@@ -46,15 +46,15 @@
 					}
 				}
 				mysqli_free_result($resultado);
-				
 				//Se verifica que no se supere el límite de 50 GB de almacenamiento por usuario
-				$query = "select sum(tamano) from imagenes where usuario ='".$_SESSION['usuario']."'";
-				$resultado = mysqli_query($conection, $query);
+				$_SESSION['myRequest'] = 2;
+				include 'consultas.php';
+				$resultado = mysqli_query($conection, $_SESSION['query']);
 				if($resultado==false){
 					$en = mysqli_errno($conection);
 					$et = mysqli_error($conection);
 					mysqli_close($conection);
-					throw new Exception("Error de query 1, ".$en." :".$et, 9);
+					throw new Exception("Error de query 2: fotoAgregada, ".$en." :".$et, 9);
 				}
 				mysqli_use_result($conection);
 				$dato = mysqli_fetch_array($resultado);
@@ -64,16 +64,6 @@
 					}
 				}
 				mysqli_free_result($resultado);
-				
-				//Se almacena la información del archivo
-				$query = "insert into imagenes values ('".$nombre."', '".$_POST['descripcion']."' , '".$_FILES['foto']['size']."' , '".$_SESSION['usuario']."')";
-				if(!mysqli_query($conection, $query)){
-					$en = mysqli_errno($conection);
-					$et = mysqli_error($conection);
-					mysql_close($conection);
-					throw new Exception("Error de query: fotoAgregada:74, ".$en." :".$et, 1);
-				}
-				mysqli_close($conection);
 				
 				//Se sube el archivo al servidor
 				if ($nombre != "") {
@@ -87,7 +77,16 @@
 				} else {
 					throw new Exception("Error al subir el archivo", 10);
 				}
-				
+				//Se almacena la información del archivo
+				$_SESSION['myRequest'] = 3;
+				include 'consultas.php';
+				if(!mysqli_query($conection, $_SESSION['query'])){
+					$en = mysqli_errno($conection);
+					$et = mysqli_error($conection);
+					mysql_close($conection);
+					throw new Exception("Error de query: fotoAgregada:74, ".$en." :".$et, 1);
+				}
+				mysqli_close($conection);
 		}catch (Exception $e){
 			$_SESSION['error']=$e->getMessage();
 			$_SESSION['errorn']=$e->getCode();

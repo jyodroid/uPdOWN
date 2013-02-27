@@ -24,9 +24,9 @@
 					
 					// Se busca el nombre de usuario en la base de datos para que no se repita
 					include 'conection.php';
-					mysqli_select_db($conection, 'updown');
-					$query = "select count(*) from usuarios where usuario ='".$_REQUEST['usuario']."'";
-					$resultado = mysqli_query($conection, $query);
+					$_SESSION['myRequest']=9;
+					include 'consultas.php';
+					$resultado = mysqli_query($conection, $_SESSION['query']);
 					if($resultado==false){
 						$en = mysqli_errno($conection);
 						$et = mysqli_error($conection);
@@ -43,8 +43,9 @@
 					mysqli_free_result($resultado);
 					
 					//Registra el nuevo usuario
-					$query = "insert into usuarios values ('".$_REQUEST['usuario']."', '".$_POST['contrasena']."')";
-					if(!mysqli_query($conection, $query)){
+					$_SESSION['myRequest']=10;
+					include 'consultas.php';
+					if(!mysqli_query($conection, $_SESSION['query'])){
 						$en = mysqli_errno($conection);
 						$et = mysqli_error($conection);
 						mysql_close($conection);

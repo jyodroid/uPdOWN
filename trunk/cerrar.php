@@ -6,5 +6,6 @@ if(isset($_SESSION['error']))
 	unset($_SESSION['error']);
 if(isset($_SESSION['errorn']))
 	unset($_SESSION['errorn']);
+	session_destroy();
 	header('location: Login.php');
 ?>

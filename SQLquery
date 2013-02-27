@@ -1,8 +1,6 @@
 updown querys
 
-create database updown;
-
-GRANT SELECT, INSERT ON updown.* to 'updown'@'localhost' IDENTIFIED BY 'gnomo';
+create database jtangar1_updown;
 
 create table usuarios(usuario varchar(20) NOT NULL, contrasena varchar(20) NOT NULL, constraint primary key(usuario));
 
