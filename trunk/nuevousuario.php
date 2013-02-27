@@ -23,6 +23,7 @@
 					</tr>
 				</table>
 		</form>
+		<a href="javascript:history.go(-1);">Volver</a>
 	</center>
 </body>
 </html>
