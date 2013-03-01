@@ -19,7 +19,7 @@
 		if(isset($_SESSION['errorn']))
 			unset($_SESSION['errorn']);
 		switch ($nerror) {
-			//Errores relacionados con el funcionamiento de las página
+			//Errores relacionados con el funcionamiento de la página
 			case 1:
 			case 4:
 				echo
